@@ -17,6 +17,7 @@ import styles from "./App.module.css";
 const WORDLENGTH = 5;
 const GUESSLIMIT = 6;
 
+// Returns a new default state object
 const getDefaultState = () => ({
   word: "",
   input: "",
@@ -34,9 +35,11 @@ const getDefaultState = () => ({
 });
 
 const processLetterMatch = (letterState, input, match) => {
+  // Find the match level of each letter based on previous matches
   let newLetterState = { ...letterState };
   match.forEach((matchLevel, index) => {
     let currentLevel = newLetterState[input[index]] || 0;
+    // Set current match level to highest out of matches
     newLetterState[input[index]] = Math.max(matchLevel, currentLevel);
   });
   return newLetterState;
@@ -66,8 +69,8 @@ const submitGuess = (state) => {
     guesses: guesses,
     input: "",
     error: "",
-    guessCount: Math.min(state.guessCount + (isMatch ? 0 : 1), 5),
-    canGuess: state.guessCount < 5 && !isMatch,
+    guessCount: Math.min(state.guessCount + (isMatch ? 0 : 1), GUESSLIMIT - 1),
+    canGuess: state.guessCount < GUESSLIMIT - 1 && !isMatch,
     letterState: processLetterMatch(
       state.letterState,
       state.input,
@@ -79,7 +82,7 @@ const submitGuess = (state) => {
 const pushInput = (state, input) => {
   if (!state.canGuess) return state;
   if (!isAlphabeticalChar(input)) return state;
-  if (state.input.length === 5) return state;
+  if (state.input.length === WORDLENGTH) return state;
 
   let newInput = state.input + input.toUpperCase();
   let guesses = [...state.guesses];
@@ -96,6 +99,7 @@ const backspace = (state) => {
 };
 
 const dumpState = (state) => {
+  // Save the gameState into localstorage as a JSON string
   const stateJson = JSON.stringify(state);
   localStorage.setItem("gameState", stateJson);
 };
@@ -146,12 +150,15 @@ const App = () => {
   useEffect(() => {
     let savedState = localStorage.getItem("gameState");
     if (savedState) {
+      // Load saved game
       dispatch({ type: "loadJsonState", jsonState: savedState });
     } else {
+      // New word
       dispatch({ type: "setRandomWord" });
     }
   }, []);
 
+  // Log word for debug
   const { word } = gameState;
   useEffect(() => {
     console.log(word);
