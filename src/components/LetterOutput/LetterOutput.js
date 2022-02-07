@@ -5,13 +5,7 @@ const matchClasses = [styles.noMatch, styles.inWord, styles.inPlace];
 
 const LetterOutput = ({ children: letter, match = 0 }) => {
   return (
-    <div
-      className={classNames(
-        styles.letter,
-        !!letter && styles.hasContent,
-        matchClasses[match]
-      )}
-    >
+    <div className={classNames(styles.letter, matchClasses[match])}>
       {letter}
     </div>
   );

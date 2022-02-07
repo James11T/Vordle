@@ -21,7 +21,7 @@
   background: var(--inPlace);
 }
 
-.hasContent {
+.letter:not(:empty) {
   animation: pop 100ms;
 }
 
