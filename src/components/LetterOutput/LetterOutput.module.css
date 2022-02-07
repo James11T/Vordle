@@ -3,34 +3,66 @@
   align-items: center;
   justify-content: center;
   text-transform: capitalize;
-  border: 3px solid rgb(78, 78, 78);
+  border: 3px solid var(--borders);
   height: 3.5rem;
   width: 3.5rem;
   font-size: 2.5rem;
+  transition: background-color 75ms;
+  transition-delay: calc(var(--index) * 50ms);
 }
 
 .noMatch {
-  background: rgb(219, 219, 219);
+  background: none;
 }
 
 .inWord {
   background: var(--inWord);
+  animation: popOut 200ms calc(var(--index) * 50ms) !important;
 }
 
 .inPlace {
   background: var(--inPlace);
+  animation: popOut 200ms calc(var(--index) * 50ms) !important;
+}
+
+.letter:empty {
+  animation: popDown 100ms;
 }
 
 .letter:not(:empty) {
-  animation: pop 100ms;
+  animation: popUp 100ms;
 }
 
-@keyframes pop {
+@keyframes popOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes popUp {
   0% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes popDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
   }
   100% {
     transform: translateY(0);

@@ -1,7 +1,27 @@
 :root {
+  --background: rgb(255, 255, 255);
+  --noMatch: rgb(163, 163, 163);
   --inWord: rgb(226, 188, 116);
-
   --inPlace: rgb(144, 212, 127);
+  --error: rgb(194, 0, 0);
+  --btnBackground: rgb(235, 235, 235);
+  --btnBackgroundHover: rgb(220, 220, 220);
+  --btnBackgroundActive: rgb(210, 210, 210);
+  --borders: rgb(78, 78, 78);
+  --textPrimary: rgb(0, 0, 0);
+}
+
+.dark {
+  --background: rgb(56, 56, 56);
+  --noMatch: rgb(163, 163, 163);
+  --inWord: rgb(231, 185, 101);
+  --inPlace: rgb(121, 180, 106);
+  --error: rgb(201, 47, 47);
+  --btnBackground: rgb(136, 136, 136);
+  --btnBackgroundHover: rgb(148, 148, 148);
+  --btnBackgroundActive: rgb(161, 161, 161);
+  --borders: rgb(109, 109, 109);
+  --textPrimary: rgb(255, 255, 255);
 }
 
 body {
@@ -11,6 +31,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--background);
+  color: var(--textPrimary);
 }
 
 code {

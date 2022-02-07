@@ -19,7 +19,7 @@ const Key = ({ children: value, onClick: onClickOverride }) => {
     <button
       className={classNames(
         styles.key,
-        highlights[value] && keyHighlights[highlights[value]]
+        highlights[value] !== null && keyHighlights[highlights[value]]
       )}
       onClick={handleOnClick}
     >
