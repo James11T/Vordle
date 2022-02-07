@@ -1,0 +1,22 @@
+.letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+  border: 3px solid rgb(78, 78, 78);
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 2.5rem;
+}
+
+.noMatch {
+  background: rgb(219, 219, 219);
+}
+
+.inWord {
+  background: rgb(226, 188, 116);
+}
+
+.inPlace {
+  background: rgb(144, 212, 127);
+}

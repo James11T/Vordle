@@ -1,0 +1,6 @@
+.wordRows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0.3rem 0;
+}
