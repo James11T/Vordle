@@ -1,6 +1,8 @@
 .key {
   height: 3.2rem;
   min-width: 2.1rem;
+  padding: 0;
+  margin: 0;
   border: none;
   border-radius: 0.3rem;
   background: var(--btnBackground);
