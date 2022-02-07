@@ -2,3 +2,23 @@
   text-align: center;
   color: rgb(194, 0, 0);
 }
+
+.resetButton {
+  position: relative;
+  left: 50%;
+  transform: translatex(-50%);
+  border: none;
+  padding: 0.3rem;
+  background: rgb(235, 235, 235);
+  border-radius: 0.3rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  background: rgb(220, 220, 220);
+}
+
+.resetButton:active {
+  background: rgb(210, 210, 210);
+}
