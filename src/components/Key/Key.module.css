@@ -1,0 +1,17 @@
+.key {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.3rem;
+  background: rgb(235, 235, 235);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 25ms;
+}
+
+.key:hover {
+  background: rgb(220, 220, 220);
+}
+
+.key:active {
+  background: rgb(210, 210, 210);
+}
