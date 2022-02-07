@@ -66,7 +66,7 @@ const Keyboard = ({ onKeyPress, onSubmit, onBackspace }) => {
         <Key onClick={handleKeyClick}>B</Key>
         <Key onClick={handleKeyClick}>N</Key>
         <Key onClick={handleKeyClick}>M</Key>
-        <Key onClick={handleBackspace}>Del</Key>
+        <Key onClick={handleBackspace}>⌫</Key>
       </div>
     </div>
   );
