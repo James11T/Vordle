@@ -1,8 +1,10 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, createContext } from "react";
 import Key from "../Key/Key";
 import styles from "./Keyboard.module.css";
 
-const Keyboard = ({ onKeyPress, onSubmit, onBackspace }) => {
+const keyboardContext = createContext();
+
+const Keyboard = ({ onKeyPress, onSubmit, onBackspace, highlights }) => {
   const handleBackspace = useCallback(() => {
     onBackspace && onBackspace();
   }, [onBackspace]);
@@ -33,43 +35,48 @@ const Keyboard = ({ onKeyPress, onSubmit, onBackspace }) => {
   }, [handleKeyDown]);
 
   return (
-    <div className={styles.keyboard}>
-      <div className={styles.keyboardRow}>
-        <Key onClick={handleKeyClick}>Q</Key>
-        <Key onClick={handleKeyClick}>W</Key>
-        <Key onClick={handleKeyClick}>E</Key>
-        <Key onClick={handleKeyClick}>R</Key>
-        <Key onClick={handleKeyClick}>T</Key>
-        <Key onClick={handleKeyClick}>Y</Key>
-        <Key onClick={handleKeyClick}>U</Key>
-        <Key onClick={handleKeyClick}>I</Key>
-        <Key onClick={handleKeyClick}>O</Key>
-        <Key onClick={handleKeyClick}>P</Key>
+    <keyboardContext.Provider
+      value={{ onClick: handleKeyClick, highlights: highlights }}
+    >
+      <div className={styles.keyboard}>
+        <div className={styles.keyboardRow}>
+          <Key>Q</Key>
+          <Key>W</Key>
+          <Key>E</Key>
+          <Key>R</Key>
+          <Key>T</Key>
+          <Key>Y</Key>
+          <Key>U</Key>
+          <Key>I</Key>
+          <Key>O</Key>
+          <Key>P</Key>
+        </div>
+        <div className={styles.keyboardRow}>
+          <Key>A</Key>
+          <Key>S</Key>
+          <Key>D</Key>
+          <Key>F</Key>
+          <Key>G</Key>
+          <Key>H</Key>
+          <Key>J</Key>
+          <Key>K</Key>
+          <Key>L</Key>
+        </div>
+        <div className={styles.keyboardRow}>
+          <Key onClick={handleSubmit}>Enter</Key>
+          <Key>Z</Key>
+          <Key>X</Key>
+          <Key>C</Key>
+          <Key>V</Key>
+          <Key>B</Key>
+          <Key>N</Key>
+          <Key>M</Key>
+          <Key onClick={handleBackspace}>⌫</Key>
+        </div>
       </div>
-      <div className={styles.keyboardRow}>
-        <Key onClick={handleKeyClick}>A</Key>
-        <Key onClick={handleKeyClick}>S</Key>
-        <Key onClick={handleKeyClick}>D</Key>
-        <Key onClick={handleKeyClick}>F</Key>
-        <Key onClick={handleKeyClick}>G</Key>
-        <Key onClick={handleKeyClick}>H</Key>
-        <Key onClick={handleKeyClick}>J</Key>
-        <Key onClick={handleKeyClick}>K</Key>
-        <Key onClick={handleKeyClick}>L</Key>
-      </div>
-      <div className={styles.keyboardRow}>
-        <Key onClick={handleSubmit}>Enter</Key>
-        <Key onClick={handleKeyClick}>Z</Key>
-        <Key onClick={handleKeyClick}>X</Key>
-        <Key onClick={handleKeyClick}>C</Key>
-        <Key onClick={handleKeyClick}>V</Key>
-        <Key onClick={handleKeyClick}>B</Key>
-        <Key onClick={handleKeyClick}>N</Key>
-        <Key onClick={handleKeyClick}>M</Key>
-        <Key onClick={handleBackspace}>⌫</Key>
-      </div>
-    </div>
+    </keyboardContext.Provider>
   );
 };
 
 export default Keyboard;
+export { keyboardContext };

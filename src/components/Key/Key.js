@@ -1,12 +1,28 @@
+import classNames from "classnames";
+import { useContext } from "react";
+import { keyboardContext } from "../Keyboard/Keyboard";
 import styles from "./Key.module.css";
 
-const Key = ({ children: value, onClick }) => {
-  const handleOnClick = (event) => {
-    onClick && onClick(value);
+const keyHighlights = [styles.notInWord, styles.inWord, styles.inPlace];
+
+const Key = ({ children: value, onClick: onClickOverride }) => {
+  const { onClick, highlights } = useContext(keyboardContext);
+  const handleOnClick = () => {
+    if (onClickOverride) {
+      onClickOverride(value);
+    } else if (onClick) {
+      onClick(value);
+    }
   };
 
   return (
-    <button className={styles.key} onClick={handleOnClick}>
+    <button
+      className={classNames(
+        styles.key,
+        highlights[value] && keyHighlights[highlights[value]]
+      )}
+      onClick={handleOnClick}
+    >
       {value}
     </button>
   );

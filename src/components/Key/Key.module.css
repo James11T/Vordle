@@ -17,3 +17,15 @@
 .key:active {
   background: rgb(210, 210, 210);
 }
+
+.notInWord {
+  opacity: 0.7;
+}
+
+.inWord {
+  background: var(--inWord);
+}
+
+.inPlace {
+  background: var(--inPlace);
+}
